@@ -7,3 +7,8 @@ guile: guile.o
 
 guile.o: guile.c
 	${CC} -c ${GUILE_CFLAGS} guile.c
+
+
+
+clean:
+	rm *.o guile
