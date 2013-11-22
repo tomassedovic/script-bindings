@@ -1,8 +1,9 @@
 (define (foo)
-  (display (map has-entity '(0 1 2 3 4 5 6 7 8 9 10)))
-  (newline))
+  (map has-entity '(0 1 2 3 4 5 6 7 8 9 10)))
 
-(define bar
-  (lambda () (display "script called") (newline)))
+(define (main)
+  (display "Called the `main` function.\n")
+  (display "Factorial: ") (display (factorial 10)) (newline)
+  (display "Entity existence map: ") (display (foo)) (newline))
 
-(display "Hey world!\n")
+(display "Loaded main.scm!\n")
