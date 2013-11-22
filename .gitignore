@@ -2,3 +2,5 @@
 /main.o
 /guile
 /guile.o
+/lua
+/lua.o
