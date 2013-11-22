@@ -7,24 +7,13 @@ static SCM has_entity(SCM entity_id) {
 	return scm_from_bool(id > 0 && id < 10);
 }
 
-static void* register_functions(void* data) {
-	scm_c_define_gsubr("has-entity", 1, 0, 0, &has_entity);
-	return NULL;
-}
-
-
-#define MAX_FILE_SIZE 1000000
-
 int main (int argc, char **argv) {
-	scm_with_guile(&register_functions, NULL);
-	char scheme_program[MAX_FILE_SIZE] = {'\0'};
-	FILE *f = fopen("main.scm", "r");
-	int c, i;
-	for(c = fgetc(f), i = 0; c != EOF && i <= MAX_FILE_SIZE; c = fgetc(f), i++) {
-		scheme_program[i] = c;
-	}
-	scheme_program[i] = '\0';
-	fclose(f);
-	scm_c_eval_string(scheme_program);
+	// TODO: scm_with_guile is preferable but doesn't work properly, see below.
+	scm_init_guile();
+	scm_c_define_gsubr("has-entity", 1, 0, 0, &has_entity);
+	scm_c_primitive_load("main.scm");
+	// TODO: gauses a stack overflow when used with scm_with_guile instead of scm_init_guile
+	scm_call_0(scm_variable_ref(scm_c_lookup("foo")));
+	scm_call_0(scm_variable_ref(scm_c_lookup("bar")));
 	return 0;
 }
