@@ -9,16 +9,19 @@ static SCM has_entity(SCM entity_id) {
 
 static void* guile_main(void* data) {
 	scm_c_define_gsubr("has-entity", 1, 0, 0, &has_entity);
-	scm_c_primitive_load("main.scm");
+
+	scm_c_primitive_load(data);
 	scm_call_0(scm_variable_ref(scm_c_lookup("foo")));
 	scm_call_0(scm_variable_ref(scm_c_lookup("bar")));
 	return NULL;
 }
 
-
-#define MAX_FILE_SIZE 1000000
-
 int main (int argc, char **argv) {
-	scm_with_guile(&guile_main, NULL);
+	if(argc == 2) {
+		scm_with_guile(&guile_main, argv[1]);
+	} else {
+		printf("You must enter the path to the script.");
+		return 1;
+	}
 	return 0;
 }
