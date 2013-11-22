@@ -1,9 +1,9 @@
 CC=gcc
-CFLAGS=`guile-config compile`
-LIBS=`guile-config link`
+GUILE_CFLAGS=`guile-config compile`
+GUILE_LIBS=`guile-config link`
 
-main: main.o
-	${CC} main.o ${LIBS} -o main
+guile: guile.o
+	${CC} guile.o ${GUILE_LIBS} -o guile
 
-main.o: main.c
-	${CC} -c ${CFLAGS} main.c
+guile.o: guile.c
+	${CC} -c ${GUILE_CFLAGS} guile.c
