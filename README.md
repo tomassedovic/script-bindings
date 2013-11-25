@@ -33,3 +33,8 @@ the languages already present). Such as:
   - http://docs.python.org/2/extending/embedding.html
 * Nasal?
   - http://www.plausible.org/nasal/
+
+
+## License ##
+
+Licensed under WTFPL v2. See `LICENSE.txt`.
