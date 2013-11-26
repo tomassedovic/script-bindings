@@ -1,8 +1,8 @@
 CC=gcc
 GUILE_LIBS=`guile-config link`
 GUILE_CFLAGS=`guile-config compile`
-LUA_LIBS=`pkg-config --libs lua5.2`
-LUA_CFLAGS=`pkg-config --cflags lua5.2`
+LUA_LIBS=`pkg-config --libs lua5.2 2>/dev/null || pkg-config --libs lua 2>/dev/null`
+LUA_CFLAGS=`pkg-config --cflags lua5.2 2>/dev/null || pkg-config --cflags lua 2>/dev/null`
 
 all: guile lua
 

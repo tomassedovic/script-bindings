@@ -9,6 +9,8 @@ Ubuntu: `apt-get install guile-2.0-dev`
 
 ### Lua 5.2 development files ###
 
+Fedora: `yum install lua-devel`
+
 Ubuntu: `apt-get install liblua5.2-dev`
 
 
