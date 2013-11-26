@@ -4,3 +4,5 @@
 /guile.o
 /lua
 /lua.o
+/squirrel
+/squirrel.o

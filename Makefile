@@ -3,8 +3,10 @@ GUILE_LIBS=`guile-config link`
 GUILE_CFLAGS=`guile-config compile`
 LUA_LIBS=`pkg-config --libs lua5.2 2>/dev/null || pkg-config --libs lua 2>/dev/null`
 LUA_CFLAGS=`pkg-config --cflags lua5.2 2>/dev/null || pkg-config --cflags lua 2>/dev/null`
+SQUIRREL_LIBS=`pkg-config --libs squirrel`
+SQUIRREL_CFLAGS=`pkg-config --cflags squirrel`
 
-all: guile lua
+all: guile lua squirrel
 
 guile: guile.o
 	${CC} guile.o ${GUILE_LIBS} -o guile
@@ -18,5 +20,11 @@ lua: lua.o
 lua.o: lua.c
 	${CC} -c ${LUA_CFLAGS} lua.c
 
+squirrel: squirrel.o
+	${CC} squirrel.o ${SQUIRREL_LIBS} -o squirrel
+
+squirrel.o: squirrel.c
+	${CC} -c ${SQUIRREL_CFLAGS} squirrel.c
+
 clean:
-	rm *.o guile lua
+	rm *.o guile lua squirrel

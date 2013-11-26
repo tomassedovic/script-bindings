@@ -13,6 +13,9 @@ Fedora: `yum install lua-devel`
 
 Ubuntu: `apt-get install liblua5.2-dev`
 
+### Squirrel development files ###
+
+Fedora: `yum install squirrel-devel`
 
 Script:
 * Define a parameterless `main` function
