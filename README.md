@@ -17,13 +17,19 @@ Ubuntu: `apt-get install liblua5.2-dev`
 
 Fedora: `yum install squirrel-devel`
 
-Script:
+Ubuntu doesn't shipt the Squirrel packages by default. You'll have to compile
+them yourself.
+
+### Script ###
+
+The steps each script should do:
+
 * Define a parameterless `main` function
 * Call a C computation function (takes an int, returns a float)
 * Call a printf-like C function
 * Modify a C struct?
   - guile: http://www.gnu.org/software/guile/manual/html_node/Foreign-Structs.html
-
+* Use a script-native object provided by the C code?
 
 
 ### Moar langs ###
@@ -36,6 +42,7 @@ the languages already present). Such as:
   - http://docs.racket-lang.org/inside/overview.html#%28part._embedding%29
 * Python
   - http://docs.python.org/2/extending/embedding.html
+* LuaJIT
 * Nasal?
   - http://www.plausible.org/nasal/
 
