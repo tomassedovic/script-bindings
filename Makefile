@@ -3,8 +3,9 @@ GUILE_LIBS=`guile-config link`
 GUILE_CFLAGS=`guile-config compile`
 LUA_LIBS=`pkg-config --libs lua5.2 2>/dev/null || pkg-config --libs lua 2>/dev/null`
 LUA_CFLAGS=`pkg-config --cflags lua5.2 2>/dev/null || pkg-config --cflags lua 2>/dev/null`
-SQUIRREL_LIBS=`pkg-config --libs squirrel`
-SQUIRREL_CFLAGS=`pkg-config --cflags squirrel`
+SQUIRREL_DIR=./lib/squirrel
+SQUIRREL_LIBS=-s -fno-exceptions -fno-rtti ${SQUIRREL_DIR}/lib/libsqstdlib.a ${SQUIRREL_DIR}/lib/libsquirrel.a
+SQUIRREL_CFLAGS=-I${SQUIRREL_DIR}/include
 
 all: guile lua squirrel
 
@@ -20,11 +21,14 @@ lua: lua.o
 lua.o: lua.c
 	${CC} -c ${LUA_CFLAGS} lua.c
 
-squirrel: squirrel.o
-	${CC} squirrel.o ${SQUIRREL_LIBS} -o squirrel
+squirrel: squirrel.o ${SQUIRREL_DIR}/lib/libsquirrel.a
+	g++ squirrel.o ${SQUIRREL_LIBS} -o squirrel
 
 squirrel.o: squirrel.c
-	${CC} -c ${SQUIRREL_CFLAGS} squirrel.c
+	gcc -c ${SQUIRREL_CFLAGS} squirrel.c
+
+${SQUIRREL_DIR}/lib/libsquirrel.a:
+	cd ${SQUIRREL_DIR} && make
 
 clean:
-	rm *.o guile lua squirrel
+	rm -rf *.o guile lua squirrel

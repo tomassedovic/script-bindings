@@ -6,3 +6,5 @@
 /lua.o
 /squirrel
 /squirrel.o
+/lib/squirrel/bin/
+/lib/squirrel/lib/

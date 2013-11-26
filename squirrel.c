@@ -17,7 +17,7 @@ void print_func(HSQUIRRELVM v, const SQChar *s, ...) {
 
 void run_squirrel_script(char* script_name) {
 	HSQUIRRELVM v = sq_open(SQUIRREL_STACK_SIZE);
-	sq_setprintfunc(v, &print_func);
+	sq_setprintfunc(v, &print_func, 0);
 	sqstd_seterrorhandlers(v);
 	sq_pushroottable(v);
 	if(SQ_FAILED(sqstd_dofile(v, script_name, SQFalse, SQTrue))) {

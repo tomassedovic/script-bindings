@@ -15,10 +15,14 @@ Ubuntu: `apt-get install liblua5.2-dev`
 
 ### Squirrel development files ###
 
-Fedora: `yum install squirrel-devel`
+Since Fedora ships Squirrel 2 and Ubuntu doesn't have it at all and it compiles
+in a few seconds with no dependencies, we just bundle Squirrel 3.0.4 in
+`lib/squirrel`.
 
-Ubuntu doesn't shipt the Squirrel packages by default. You'll have to compile
-them yourself.
+Running `make lib/squirrel/lib/libsquirrel.a` will compile the language. The
+target for the C program that includes Squirrel has it as a dependency so `make
+squirrel` should just work.
+
 
 ### Script ###
 
